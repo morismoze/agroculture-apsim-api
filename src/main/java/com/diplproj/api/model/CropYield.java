@@ -18,8 +18,10 @@ public class CropYield {
     @JoinColumn(name = "id_location")
     private Location yieldLocation;
 
+    @Column(name = "value")
     private Double value;
 
+    @Column(name = "date")
     private Date date;
 
     public Integer getId() {

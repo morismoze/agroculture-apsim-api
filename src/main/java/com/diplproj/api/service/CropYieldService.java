@@ -1,10 +1,11 @@
 package com.diplproj.api.service;
 
-import com.diplproj.api.model.CropYield;
+import com.diplproj.api.response.projection.CropYieldResponseDto;
+
 import java.util.List;
 
 public interface CropYieldService {
 
-    List<CropYield> getCultureYield(Integer cultureId, Integer locationId);
+    List<CropYieldResponseDto> getCultureYield(Integer cultureId, Integer locationId);
 
 }
