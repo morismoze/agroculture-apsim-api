@@ -1,5 +1,7 @@
 package com.diplproj.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,10 +11,12 @@ public class CropYield {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_location")
-    private Integer idLocation;
+    @ManyToOne
+    @JoinColumn(name = "id_location")
+    private Location yieldLocation;
 
     private Double value;
 
@@ -26,12 +30,13 @@ public class CropYield {
         this.id = id;
     }
 
-    public Integer getIdLocation() {
-        return idLocation;
+    @JsonBackReference
+    public Location getYieldLocation() {
+        return yieldLocation;
     }
 
-    public void setIdLocation(Integer idLocation) {
-        this.idLocation = idLocation;
+    public void setYieldLocation(Location yieldLocation) {
+        this.yieldLocation = yieldLocation;
     }
 
     public Double getValue() {

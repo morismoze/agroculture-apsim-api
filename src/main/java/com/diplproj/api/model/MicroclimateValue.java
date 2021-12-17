@@ -9,21 +9,26 @@ public class MicroclimateValue {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-
-    @Column(name = "id_culture")
-    private Integer idCulture;
-
-    @Column(name = "id_microclimate")
-    private Integer idMicroclimate;
-
-    @Column(name = "id_location")
-    private Integer idLocation;
 
     @Column(name = "microclimate_value")
     private Double microclimateValue;
 
+    @Column(name = "date")
     private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "id_culture")
+    private Culture culture;
+
+    @ManyToOne
+    @JoinColumn(name = "id_location")
+    private Location microclimateLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "id_microclimate")
+    private MicroclimateName microclimateName;
 
     public Integer getId() {
         return id;
@@ -31,30 +36,6 @@ public class MicroclimateValue {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getIdCulture() {
-        return idCulture;
-    }
-
-    public void setIdCulture(Integer idCulture) {
-        this.idCulture = idCulture;
-    }
-
-    public Integer getIdMicroclimate() {
-        return idMicroclimate;
-    }
-
-    public void setIdMicroclimate(Integer idMicroclimate) {
-        this.idMicroclimate = idMicroclimate;
-    }
-
-    public Integer getIdLocation() {
-        return idLocation;
-    }
-
-    public void setIdLocation(Integer idLocation) {
-        this.idLocation = idLocation;
     }
 
     public Double getMicroclimateValue() {
@@ -71,6 +52,30 @@ public class MicroclimateValue {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Culture getCulture() {
+        return culture;
+    }
+
+    public void setCulture(Culture culture) {
+        this.culture = culture;
+    }
+
+    public Location getMicroclimateLocation() {
+        return microclimateLocation;
+    }
+
+    public void setMicroclimateLocation(Location microclimateLocation) {
+        this.microclimateLocation = microclimateLocation;
+    }
+
+    public MicroclimateName getMicroclimateName() {
+        return microclimateName;
+    }
+
+    public void setMicroclimateName(MicroclimateName microclimateName) {
+        this.microclimateName = microclimateName;
     }
 
 }

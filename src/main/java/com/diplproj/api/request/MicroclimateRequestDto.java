@@ -1,4 +1,4 @@
-package com.diplproj.api.model.dto.request;
+package com.diplproj.api.request;
 
 
 import java.sql.Date;

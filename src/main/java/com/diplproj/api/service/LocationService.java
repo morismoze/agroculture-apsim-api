@@ -1,10 +1,10 @@
 package com.diplproj.api.service;
 
-import com.diplproj.api.model.Location;
+import com.diplproj.api.response.LocationResponseDto;
 import java.util.List;
 
 public interface LocationService {
 
-    List<Location> getAllLocations();
+    List<LocationResponseDto> getAllLocations();
 
 }

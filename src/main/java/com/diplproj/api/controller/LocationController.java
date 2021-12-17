@@ -1,6 +1,6 @@
 package com.diplproj.api.controller;
 
-import com.diplproj.api.model.Location;
+import com.diplproj.api.response.LocationResponseDto;
 import com.diplproj.api.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,16 @@ import java.util.List;
 @RequestMapping("/location")
 public class LocationController {
 
+    private final LocationService locationService;
+
     @Autowired
-    LocationService locationService;
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Location>> getAllLocations() {
-        List<Location> locations = this.locationService.getAllLocations();
+    public ResponseEntity<List<LocationResponseDto>> getAllLocations() {
+        List<LocationResponseDto> locations = this.locationService.getAllLocations();
 
         return ResponseEntity.status(200).body(locations);
     }

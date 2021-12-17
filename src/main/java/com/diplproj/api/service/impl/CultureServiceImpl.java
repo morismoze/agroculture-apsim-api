@@ -1,31 +1,45 @@
 package com.diplproj.api.service.impl;
 
 import com.diplproj.api.model.Culture;
-import com.diplproj.api.model.dto.response.CropYieldResponseDto;
-import com.diplproj.api.model.dto.response.CultureMonetaryGainResponseDto;
+import com.diplproj.api.response.*;
 import com.diplproj.api.repository.CultureRepository;
 import com.diplproj.api.service.CultureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CultureServiceImpl implements CultureService {
 
+    private final CultureRepository cultureRepository;
+
     @Autowired
-    private CultureRepository cultureRepository;
+    public CultureServiceImpl(CultureRepository cultureRepository) {
+        this.cultureRepository = cultureRepository;
+    }
 
     @Override
-    public List<Culture> getAllCultures() {
-        return this.cultureRepository.findAll();
+    public List<CultureResponseDto> getAllCultures() {
+        return this.cultureRepository.findAll()
+                .stream()
+                .map((culture) -> new CultureResponseDto(culture.getId(), culture.getCultureName()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<CultureMonetaryGainResponseDto> getCultureMonetaryGain(Integer cultureId, Integer locationId) {
-        List<CultureMonetaryGainResponseDto> cultureMonetaryGain = new ArrayList<>();
+        /*return this.cultureRepository.(microclimateId, from, to, locationId)
+                .stream()
+                .map((data) -> new MicroclimateResponseDto(data.getDate(), data.getMicroclimateValue()))
+                .collect(Collectors.toList());
 
-        return cultureMonetaryGain;
+        return cultureMonetaryGain;*/
+
+        List<CultureMonetaryGainResponseDto> list = new ArrayList<>();
+        return list;
     }
 
 }

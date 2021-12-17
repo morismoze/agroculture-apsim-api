@@ -1,7 +1,7 @@
 package com.diplproj.api.controller;
 
 import com.diplproj.api.model.CropYield;
-import com.diplproj.api.model.dto.request.CropYieldRequestDto;
+import com.diplproj.api.request.CropYieldRequestDto;
 import com.diplproj.api.service.CropYieldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +12,14 @@ import java.util.List;
 @RequestMapping("/yield")
 public class CropYieldController {
 
-    @Autowired
-    private CropYieldService cropYieldService;
+    private final CropYieldService cropYieldService;
 
-    @PostMapping("/")
+    @Autowired
+    public CropYieldController(CropYieldService cropYieldService) {
+        this.cropYieldService = cropYieldService;
+    }
+
+    @PostMapping
     public ResponseEntity<List<CropYield>> getCultureYield(@RequestBody CropYieldRequestDto cropYieldRequestDto) {
         List<CropYield> microclimateParameters = this.cropYieldService.getCultureYield(cropYieldRequestDto.getCultureId(), cropYieldRequestDto.getLocationId());
 

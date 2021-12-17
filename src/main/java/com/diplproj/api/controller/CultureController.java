@@ -1,8 +1,8 @@
 package com.diplproj.api.controller;
 
-import com.diplproj.api.model.Culture;
-import com.diplproj.api.model.dto.request.CultureMonetaryGainRequestDto;
-import com.diplproj.api.model.dto.response.CultureMonetaryGainResponseDto;
+import com.diplproj.api.request.CultureMonetaryGainRequestDto;
+import com.diplproj.api.response.CultureMonetaryGainResponseDto;
+import com.diplproj.api.response.CultureResponseDto;
 import com.diplproj.api.service.CultureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,16 @@ import java.util.List;
 @RequestMapping("/culture")
 public class CultureController {
 
+    private final CultureService cultureService;
+
     @Autowired
-    private CultureService cultureService;
+    public CultureController(CultureService cultureService) {
+        this.cultureService = cultureService;
+    }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Culture>> getAllCultures() {
-        List<Culture> cultures = this.cultureService.getAllCultures();
+    public ResponseEntity<List<CultureResponseDto>> getAllCultures() {
+        List<CultureResponseDto> cultures = this.cultureService.getAllCultures();
 
         return ResponseEntity.status(200).body(cultures);
     }

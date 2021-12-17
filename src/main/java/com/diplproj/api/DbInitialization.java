@@ -1,4 +1,4 @@
-package com.diplproj.api.config;
+package com.diplproj.api;
 
 import com.diplproj.api.model.*;
 import com.diplproj.api.repository.*;
@@ -26,7 +26,7 @@ public class DbInitialization implements CommandLineRunner {
         Connection connection = connectToSqliteDb();
         String sql = "SELECT * FROM Report";
 
-       /* try {
+        /*try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
@@ -50,9 +50,9 @@ public class DbInitialization implements CommandLineRunner {
                 Double wind = resultSet.getDouble("Weather.Wind");
 
                 CropYield cropYield = new CropYield();
-                cropYield.setIdLocation(location.getId());
                 cropYield.setValue(yield);
                 cropYield.setDate(date);
+                cropYield.setYieldLocation(location);
                 this.cropYieldRepository.save(cropYield);
 
                 // names
@@ -80,46 +80,41 @@ public class DbInitialization implements CommandLineRunner {
                 // values
 
                 MicroclimateValue radiationValue = new MicroclimateValue();
-                radiationValue.setId(1);
-                radiationValue.setIdCulture(culture.getId());
-                radiationValue.setIdMicroclimate(radiationName.getId());
-                radiationValue.setIdLocation(location.getId());
+                radiationValue.setCulture(culture);
+                radiationValue.setMicroclimateName(radiationName);
+                radiationValue.setMicroclimateLocation(location);
                 radiationValue.setMicroclimateValue(radiation);
                 radiationValue.setDate(date);
                 this.microclimateValueRepository.save(radiationValue);
 
                 MicroclimateValue maxTempValue = new MicroclimateValue();
-                maxTempValue.setId(2);
-                maxTempValue.setIdCulture(culture.getId());
-                maxTempValue.setIdMicroclimate(maxTempName.getId());
-                maxTempValue.setIdLocation(location.getId());
+                maxTempValue.setCulture(culture);
+                maxTempValue.setMicroclimateName(maxTempName);
+                maxTempValue.setMicroclimateLocation(location);
                 maxTempValue.setMicroclimateValue(maxTemp);
                 maxTempValue.setDate(date);
                 this.microclimateValueRepository.save(maxTempValue);
 
                 MicroclimateValue minTempValue = new MicroclimateValue();
-                minTempValue.setId(3);
-                minTempValue.setIdCulture(culture.getId());
-                minTempValue.setIdMicroclimate(minTempName.getId());
-                minTempValue.setIdLocation(location.getId());
+                minTempValue.setCulture(culture);
+                minTempValue.setMicroclimateName(minTempName);
+                minTempValue.setMicroclimateLocation(location);
                 minTempValue.setMicroclimateValue(minTemp);
                 minTempValue.setDate(date);
                 this.microclimateValueRepository.save(minTempValue);
 
                 MicroclimateValue rainValue = new MicroclimateValue();
-                rainValue.setId(4);
-                rainValue.setIdCulture(culture.getId());
-                rainValue.setIdMicroclimate(rainName.getId());
-                rainValue.setIdLocation(location.getId());
+                rainValue.setCulture(culture);
+                rainValue.setMicroclimateName(rainName);
+                rainValue.setMicroclimateLocation(location);
                 rainValue.setMicroclimateValue(rain);
                 rainValue.setDate(date);
                 this.microclimateValueRepository.save(rainValue);
 
                 MicroclimateValue windValue = new MicroclimateValue();
-                windValue.setId(5);
-                windValue.setIdCulture(culture.getId());
-                windValue.setIdMicroclimate(windName.getId());
-                windValue.setIdLocation(location.getId());
+                windValue.setCulture(culture);
+                windValue.setMicroclimateName(windName);
+                windValue.setMicroclimateLocation(location);
                 windValue.setMicroclimateValue(wind);
                 windValue.setDate(date);
                 this.microclimateValueRepository.save(windValue);

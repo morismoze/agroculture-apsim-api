@@ -1,19 +1,22 @@
 package com.diplproj.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "microclimate_name")
 public class MicroclimateName {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "microclimate_name")
     private String microclimateName;
+
+    @OneToMany(mappedBy = "microclimateName")
+    private List<MicroclimateValue> microclimateValues;
 
     public Integer getId() {
         return id;
@@ -31,4 +34,11 @@ public class MicroclimateName {
         this.microclimateName = microclimateName;
     }
 
+    public List<MicroclimateValue> getMicroclimateValues() {
+        return microclimateValues;
+    }
+
+    public void setMicroclimateValues(List<MicroclimateValue> microclimateValues) {
+        this.microclimateValues = microclimateValues;
+    }
 }

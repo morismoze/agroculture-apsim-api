@@ -1,4 +1,4 @@
-package com.diplproj.api.model.dto.response;
+package com.diplproj.api.response;
 
 public class CultureMonetaryGainResponseDto {
 }

@@ -1,9 +1,10 @@
 package com.diplproj.api.service.impl;
 
-import com.diplproj.api.model.MicroclimateName;
-import com.diplproj.api.model.dto.response.MicroclimateResponseDto;
+import com.diplproj.api.response.MicroclimateNameResponseDto;
+import com.diplproj.api.response.MicroclimateResponseDto;
 import com.diplproj.api.repository.MicroclimateNameRepository;
 import com.diplproj.api.repository.MicroclimateValueRepository;
+import com.diplproj.api.response.projection.MicroclimateTimePeriodResponseDto;
 import com.diplproj.api.service.MicroclimateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,27 @@ import java.util.stream.Collectors;
 @Service
 public class MicroclimateServiceImpl implements MicroclimateService {
 
+    private final MicroclimateNameRepository microclimateNameRepository;
+
+    private final MicroclimateValueRepository microclimateValueRepository;
+
     @Autowired
-    MicroclimateNameRepository microclimateNameRepository;
-    @Autowired
-    MicroclimateValueRepository microclimateValueRepository;
+    public MicroclimateServiceImpl(MicroclimateNameRepository microclimateNameRepository, MicroclimateValueRepository microclimateValueRepository) {
+        this.microclimateNameRepository = microclimateNameRepository;
+        this.microclimateValueRepository = microclimateValueRepository;
+    }
 
     @Override
-    public List<MicroclimateName> getAllMicroclimateParameters() {
-        return this.microclimateNameRepository.findAll();
+    public List<MicroclimateNameResponseDto> getAllMicroclimateParameters() {
+        return this.microclimateNameRepository.findAll()
+                .stream()
+                .map((microclimateName) -> new MicroclimateNameResponseDto(microclimateName.getId(), microclimateName.getMicroclimateName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public MicroclimateTimePeriodResponseDto getPossibleTimePeriod() {
+        return this.microclimateValueRepository.findMinimumAndMaximumDate();
     }
 
     @Override
