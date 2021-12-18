@@ -1,8 +1,8 @@
 package com.diplproj.api.controller;
 
 import com.diplproj.api.request.CultureMonetaryGainRequestDto;
-import com.diplproj.api.response.CultureMonetaryGainResponseDto;
 import com.diplproj.api.response.CultureResponseDto;
+import com.diplproj.api.response.projection.CultureMonetaryGainResponseDto;
 import com.diplproj.api.service.CultureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +28,8 @@ public class CultureController {
     }
 
     @PostMapping("/{cultureId}/monetary-gain")
-    public ResponseEntity<List<CultureMonetaryGainResponseDto>> getCultureMonetaryGain(@RequestBody CultureMonetaryGainRequestDto cultureMonetaryGainRequestDto) {
-        List<CultureMonetaryGainResponseDto> microclimateParameters = this.cultureService.getCultureMonetaryGain(cultureMonetaryGainRequestDto.getCultureId(), cultureMonetaryGainRequestDto.getLocationId());
+    public ResponseEntity<List<CultureMonetaryGainResponseDto>> getCultureMonetaryGain(@PathVariable Integer cultureId, @RequestBody CultureMonetaryGainRequestDto cultureMonetaryGainRequestDto) {
+        List<CultureMonetaryGainResponseDto> microclimateParameters = this.cultureService.getCultureMonetaryGain(cultureId, cultureMonetaryGainRequestDto.getLocationId());
 
         return ResponseEntity.status(200).body(microclimateParameters);
     }

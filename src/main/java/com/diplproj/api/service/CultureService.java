@@ -1,7 +1,7 @@
 package com.diplproj.api.service;
 
-import com.diplproj.api.response.CultureMonetaryGainResponseDto;
 import com.diplproj.api.response.CultureResponseDto;
+import com.diplproj.api.response.projection.CultureMonetaryGainResponseDto;
 import java.util.List;
 
 public interface CultureService {

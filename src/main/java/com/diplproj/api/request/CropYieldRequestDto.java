@@ -3,6 +3,7 @@ package com.diplproj.api.request;
 public class CropYieldRequestDto {
 
     private Integer cultureId;
+
     private Integer locationId;
 
     public Integer getCultureId() {

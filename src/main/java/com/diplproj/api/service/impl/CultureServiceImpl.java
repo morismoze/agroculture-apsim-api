@@ -1,12 +1,11 @@
 package com.diplproj.api.service.impl;
 
-import com.diplproj.api.model.Culture;
 import com.diplproj.api.response.*;
 import com.diplproj.api.repository.CultureRepository;
+import com.diplproj.api.response.projection.CultureMonetaryGainResponseDto;
 import com.diplproj.api.service.CultureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,15 +30,7 @@ public class CultureServiceImpl implements CultureService {
 
     @Override
     public List<CultureMonetaryGainResponseDto> getCultureMonetaryGain(Integer cultureId, Integer locationId) {
-        /*return this.cultureRepository.(microclimateId, from, to, locationId)
-                .stream()
-                .map((data) -> new MicroclimateResponseDto(data.getDate(), data.getMicroclimateValue()))
-                .collect(Collectors.toList());
-
-        return cultureMonetaryGain;*/
-
-        List<CultureMonetaryGainResponseDto> list = new ArrayList<>();
-        return list;
+        return this.cultureRepository.findByIdAndLocation(cultureId, locationId);
     }
 
 }

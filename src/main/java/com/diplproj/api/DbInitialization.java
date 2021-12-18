@@ -23,22 +23,22 @@ public class DbInitialization implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Connection connection = connectToSqliteDb();
+        /*Connection connection = connectToSqliteDb();
         String sql = "SELECT * FROM Report";
 
-        /*try {
+        try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             // barley -> 1, chickpea -> 2, maize -> 3, oats -> 4, wheat -> 5
             Culture culture = new Culture();
-            culture.setId(1);
-            culture.setCultureName("Barley");
+            culture.setId(5);
+            culture.setCultureName("Wheat");
 
             // zagreb -> 1, osijek -> 2, pula -> 3
             Location location = new Location();
-            location.setId(2);
-            location.setLocationName("Osijek");
+            location.setId(1);
+            location.setLocationName("Zagreb");
 
             while (resultSet.next()) {
                 Date date = resultSet.getDate("Clock.Today");
@@ -59,23 +59,23 @@ public class DbInitialization implements CommandLineRunner {
 
                 MicroclimateName radiationName = new MicroclimateName();
                 radiationName.setId(1);
-                radiationName.setMicroclimateName("radiation");
+                radiationName.setMicroclimateName("Radiation");
 
                 MicroclimateName maxTempName = new MicroclimateName();
                 maxTempName.setId(2);
-                maxTempName.setMicroclimateName("maxTemp");
+                maxTempName.setMicroclimateName("Maximum temperature");
 
                 MicroclimateName minTempName = new MicroclimateName();
                 minTempName.setId(3);
-                minTempName.setMicroclimateName("minTemp");
+                minTempName.setMicroclimateName("Minimum temperature");
 
                 MicroclimateName rainName = new MicroclimateName();
                 rainName.setId(4);
-                rainName.setMicroclimateName("rain");
+                rainName.setMicroclimateName("Rain");
 
                 MicroclimateName windName = new MicroclimateName();
                 windName.setId(5);
-                windName.setMicroclimateName("wind");
+                windName.setMicroclimateName("Wind");
 
                 // values
 
@@ -126,7 +126,7 @@ public class DbInitialization implements CommandLineRunner {
 
     private Connection connectToSqliteDb() {
         try {
-            String url = "jdbc:sqlite:D:/diplomski_projekt/dataset/barley_osijek/barley_osijek.db";
+            String url = "jdbc:sqlite:D:/diplomski_projekt/dataset/wheat_zagreb/wheat_zagreb.db";
             return DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

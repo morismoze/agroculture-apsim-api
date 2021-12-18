@@ -6,7 +6,9 @@ import java.sql.Date;
 public class MicroclimateRequestDto {
 
     private Integer locationId;
+
     private Date from;
+
     private Date to;
 
     public Integer getLocationId() {

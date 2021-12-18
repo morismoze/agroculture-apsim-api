@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface MicroclimateValueRepository extends JpaRepository<MicroclimateValue, Integer> {
 
-    @Query(value = "SELECT * " +
+    @Query(value = "SELECT DISTINCT ON (date) * " +
             "FROM microclimate_value " +
             "WHERE id_microclimate = :microclimateId AND id_location = :locationId AND date BETWEEN :from AND :to " +
             "ORDER BY date",
