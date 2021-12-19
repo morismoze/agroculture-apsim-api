@@ -5,9 +5,11 @@ import com.diplproj.api.response.projection.MicroclimateTimePeriodResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.util.List;
 
+@Repository
 public interface MicroclimateValueRepository extends JpaRepository<MicroclimateValue, Integer> {
 
     @Query(value = "SELECT DISTINCT ON (date) * " +

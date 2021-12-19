@@ -10,16 +10,28 @@ import java.sql.*;
 @Component
 public class DbInitialization implements CommandLineRunner {
 
+    private final CropYieldRepository cropYieldRepository;
+
+    private final CultureRepository cultureRepository;
+
+    private final LocationRepository locationRepository;
+
+    private final MicroclimateNameRepository microclimateNameRepository;
+
+    private final MicroclimateValueRepository microclimateValueRepository;
+
     @Autowired
-    CropYieldRepository cropYieldRepository;
-    @Autowired
-    CultureRepository cultureRepository;
-    @Autowired
-    LocationRepository locationRepository;
-    @Autowired
-    MicroclimateNameRepository microclimateNameRepository;
-    @Autowired
-    MicroclimateValueRepository microclimateValueRepository;
+    public DbInitialization(CropYieldRepository cropYieldRepository,
+                            CultureRepository cultureRepository,
+                            LocationRepository locationRepository,
+                            MicroclimateNameRepository microclimateNameRepository,
+                            MicroclimateValueRepository microclimateValueRepository) {
+        this.cropYieldRepository = cropYieldRepository;
+        this.cultureRepository = cultureRepository;
+        this.locationRepository = locationRepository;
+        this.microclimateNameRepository = microclimateNameRepository;
+        this.microclimateValueRepository = microclimateValueRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {

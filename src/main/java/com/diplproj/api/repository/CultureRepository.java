@@ -5,8 +5,10 @@ import com.diplproj.api.response.projection.CultureMonetaryGainResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public interface CultureRepository extends JpaRepository<Culture, Integer> {
 
     @Query(value = "SELECT cp.price * max(cy.value) AS monetaryGain, EXTRACT(YEAR FROM cy.date) AS year " +
