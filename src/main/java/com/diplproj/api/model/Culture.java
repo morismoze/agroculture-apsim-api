@@ -21,6 +21,9 @@ public class Culture {
     @OneToMany(mappedBy = "culture")
     private List<CulturePrice> culturePrices;
 
+    @OneToMany(mappedBy = "culture")
+    private List<CropYield> cultureYields;
+
     public Integer getId() {
         return id;
     }
@@ -53,4 +56,11 @@ public class Culture {
         this.culturePrices = culturePrices;
     }
 
+    public List<CropYield> getCultureYields() {
+        return cultureYields;
+    }
+
+    public void setCultureYields(List<CropYield> cultureYields) {
+        this.cultureYields = cultureYields;
+    }
 }
