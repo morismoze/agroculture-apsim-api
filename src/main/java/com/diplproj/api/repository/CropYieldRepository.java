@@ -11,12 +11,10 @@ import java.util.List;
 @Repository
 public interface CropYieldRepository extends JpaRepository<CropYield, Integer> {
 
-    @Query(value = "SELECT max(cy.value) AS yield, EXTRACT(YEAR FROM cy.date) AS year " +
-            "FROM culture AS c " +
-            "JOIN crop_yield AS cy ON c.id = cy.id_culture " +
-            "JOIN location AS l ON l.id = cy.id_location " +
-            "WHERE c.id = :cultureId AND l.id = :locationId " +
-            "GROUP BY year " +
+    @Query(value = "SELECT max(value) AS yield, EXTRACT(YEAR FROM date) AS year " +
+            "FROM crop_yield " +
+            "WHERE id_culture = :cultureId AND id_location = :locationId " +
+            "GROUP BY EXTRACT(YEAR FROM date) " +
             "ORDER BY year", nativeQuery = true)
     List<CropYieldResponseDto> findByIdAndLocation(@Param("cultureId") Integer cultureId, @Param("locationId") Integer locationId);
 

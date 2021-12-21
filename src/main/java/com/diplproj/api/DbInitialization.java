@@ -38,19 +38,19 @@ public class DbInitialization implements CommandLineRunner {
         Connection connection = connectToSqliteDb();
         String sql = "SELECT * FROM Report";
 
-        try {
+        /*try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             // barley -> 1, chickpea -> 2, maize -> 3, oats -> 4, wheat -> 5
             Culture culture = new Culture();
-            culture.setId(2);
-            culture.setCultureName("Barley");
+            culture.setId(5);
+            culture.setCultureName("Wheat");
 
             // zagreb -> 1, osijek -> 2, pula -> 3
             Location location = new Location();
-            location.setId(2);
-            location.setLocationName("Osijek");
+            location.setId(1);
+            location.setLocationName("Zagreb");
 
             while (resultSet.next()) {
                 Date date = resultSet.getDate("Clock.Today");
@@ -134,12 +134,12 @@ public class DbInitialization implements CommandLineRunner {
             }
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
-        }
+        }*/
     }
 
     private Connection connectToSqliteDb() {
         try {
-            String url = "jdbc:sqlite:D:/diplomski_projekt/dataset/barley_osijek/barley_osijek.db";
+            String url = "jdbc:sqlite:D:/diplomski_projekt/dataset/wheat_zagreb/wheat_zagreb.db";
             return DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
